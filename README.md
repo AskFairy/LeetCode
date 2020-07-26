@@ -182,3 +182,32 @@ LeetCode习题集
 空间复杂度：O（1）
 
 已做次数：2
+
+#### [合并两个有序数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MergeSortedArray .java)
+
+代码：
+
+```java
+	public void merge(int[] nums1, int m, int[] nums2, int n) {
+		int mIndex = m - 1;
+		int nIndex = n - 1;
+		int mergeIndex = m + n - 1;
+		while (mIndex >= 0 || nIndex >= 0) {
+			if (mIndex < 0) {
+				nums1[mergeIndex--] = nums2[nIndex--];
+			} else if (nIndex < 0) {
+				nums1[mergeIndex--] = nums1[mIndex--];
+			} else if (nums1[mIndex] > nums2[nIndex]) {
+				nums1[mergeIndex--] = nums1[mIndex--];
+			}else {
+				nums1[mergeIndex--] = nums2[nIndex--];
+			}
+		}
+    }
+```
+
+时间复杂度：O（n）
+
+空间复杂度：O（1）
+
+已做次数：2
