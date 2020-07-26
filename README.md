@@ -7,6 +7,22 @@ LeetCode习题集
 
 #### [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
 
+代码：
+
+```java
+public int maxArea(int[] height) {
+		int max = 0;
+		int left = 0;
+		int right = height.length - 1;
+		while (left < right) {
+			max =  height[left] < height[right] ?
+					Math.max((right - left) * height[left++], max) :
+					Math.max((right - left) * height[right--], max);
+		}
+		return max;
+    }
+```
+
 时间复杂度：O（n）
 
 空间复杂度：O（1）
@@ -15,13 +31,49 @@ LeetCode习题集
 
 #### [移动零](https://github.com/AskFairy/LeetCode/blob/master/java/one/MoveZeroes.java)
 
+代码：
+
+```java
+public void moveZeroes(int[] nums) {
+    	int j = 0;
+    	for (int i = 0; i < nums.length; i++) {
+    		if (nums[i] != 0){
+    			nums[j] = nums[i];
+    			if (i != j){
+    				nums[i] = 0;
+				}
+				j++;
+			}
+		}
+    }
+```
+
 时间复杂度：O（n）
 
 空间复杂度：O（1）
 
 已做次数：2
 
-[爬楼梯](https://github.com/AskFairy/LeetCode/blob/master/java/one/ClimbingStairs.java)
+#### [爬楼梯](https://github.com/AskFairy/LeetCode/blob/master/java/one/ClimbingStairs.java)
+
+代码：
+
+```java
+public int climbStairs(int n) {
+    	if (n <= 2) {
+    		return n;
+		}
+    	int f1 = 1;
+    	int f2 = 2;
+    	int f3 = 0;
+    	for (int i = 3;i <= n; i++) {
+    		f3 = f1 + f2;
+    		f1 = f2;
+    		f2 = f3;
+		}
+    	return f3;
+    }
+```
 
 时间复杂度：O（n）
 
@@ -29,7 +81,41 @@ LeetCode习题集
 
 已做次数：2
 
-[三数之和](https://github.com/AskFairy/LeetCode/blob/master/java/one/ThreeSum.java)
+#### [三数之和](https://github.com/AskFairy/LeetCode/blob/master/java/one/ThreeSum.java)
+
+代码：
+
+```java
+public List<List<Integer>> threeSum(int[] nums) {
+		Arrays.sort(nums);
+		List<List<Integer>> res = new ArrayList<>();
+		for(int k = 0; k < nums.length - 2; k++) {
+			if (nums[k] > 0) {
+				break;
+			}
+			if (k > 0 && nums[k] == nums[k - 1]){
+				continue;
+			}
+			int i = k + 1;
+			int j = nums.length - 1;
+			while (i < j) {
+				int sum = nums[k] + nums[i] + nums[j];
+				if (sum < 0) {
+					while(i < j && nums[i] == nums[++i]);
+				}
+				if (sum > 0) {
+					while(i < j && nums[j] == nums[--j]);
+				}
+				if (sum == 0) {
+					res.add(new ArrayList<Integer>(Arrays.asList(nums[k],nums[i],nums[j])));
+					while(i < j && nums[i] == nums[++i]);
+					while(i < j && nums[j] == nums[--j]);
+				}
+			}
+		}
+		return res;
+    }
+```
 
 时间复杂度：O（n ^2）
 
