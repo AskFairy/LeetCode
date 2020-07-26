@@ -122,3 +122,32 @@ public List<List<Integer>> threeSum(int[] nums) {
 空间复杂度：O（1）
 
 已做次数：1
+
+### 课后作业
+
+[删除数组中的重复项](https://github.com/AskFairy/LeetCode/blob/master/java/one/RemoveDuplicatesFromSortedArray.java)
+
+代码：
+
+```java
+public int removeDuplicates(int[] nums) {
+		if (nums.length == 0) {
+			return 0;
+		}
+
+		int index = 0;
+		for (int i = 1; i < nums.length; i++) {
+			if (nums[index] != nums[i]) {
+				index += 1;
+				nums[index] = nums[i];
+			}
+		}
+		return index + 1;
+    }
+```
+
+时间复杂度：O（n）
+
+空间复杂度：O（1）
+
+已做次数：2
