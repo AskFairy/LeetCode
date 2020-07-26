@@ -5,12 +5,12 @@ LeetCode习题集
 
 ### Array 实战题目
 
-#### [盛最多水的容器](https://leetcode-cn.com/problems/container-with-most-water/)
+#### [盛最多水的容器](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ContainerWithMostWater.java)
 
 代码：
 
 ```java
-public int maxArea(int[] height) {
+	public int maxArea(int[] height) {
 		int max = 0;
 		int left = 0;
 		int right = height.length - 1;
@@ -29,12 +29,12 @@ public int maxArea(int[] height) {
 
 已做次数：2
 
-#### [移动零](https://github.com/AskFairy/LeetCode/blob/master/java/one/MoveZeroes.java)
+#### [移动零](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MoveZeroes.java)
 
 代码：
 
 ```java
-public void moveZeroes(int[] nums) {
+	public void moveZeroes(int[] nums) {
     	int j = 0;
     	for (int i = 0; i < nums.length; i++) {
     		if (nums[i] != 0){
@@ -54,12 +54,12 @@ public void moveZeroes(int[] nums) {
 
 已做次数：2
 
-#### [爬楼梯](https://github.com/AskFairy/LeetCode/blob/master/java/one/ClimbingStairs.java)
+#### [爬楼梯](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ClimbingStairs.java)
 
 代码：
 
 ```java
-public int climbStairs(int n) {
+	public int climbStairs(int n) {
     	if (n <= 2) {
     		return n;
 		}
@@ -81,12 +81,12 @@ public int climbStairs(int n) {
 
 已做次数：2
 
-#### [三数之和](https://github.com/AskFairy/LeetCode/blob/master/java/one/ThreeSum.java)
+#### [三数之和](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ThreeSum.java)
 
 代码：
 
 ```java
-public List<List<Integer>> threeSum(int[] nums) {
+	public List<List<Integer>> threeSum(int[] nums) {
 		Arrays.sort(nums);
 		List<List<Integer>> res = new ArrayList<>();
 		for(int k = 0; k < nums.length - 2; k++) {
@@ -123,14 +123,16 @@ public List<List<Integer>> threeSum(int[] nums) {
 
 已做次数：1
 
+### Linked List 实战题目
+
 ### 课后作业
 
-[删除数组中的重复项](https://github.com/AskFairy/LeetCode/blob/master/java/one/RemoveDuplicatesFromSortedArray.java)
+#### [删除数组中的重复项](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RemoveDuplicatesFromSortedArray.java)
 
 代码：
 
 ```java
-public int removeDuplicates(int[] nums) {
+	public int removeDuplicates(int[] nums) {
 		if (nums.length == 0) {
 			return 0;
 		}
@@ -144,6 +146,35 @@ public int removeDuplicates(int[] nums) {
 		}
 		return index + 1;
     }
+```
+
+时间复杂度：O（n）
+
+空间复杂度：O（1）
+
+已做次数：2
+
+#### [旋转数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RotateArray .java)
+
+代码：
+
+```java
+	public void rotate(int[] nums, int k) {
+		k %= nums.length;
+		reverse(0,nums.length - 1,nums);
+		reverse(0,k - 1,nums);
+		reverse(k,nums.length - 1,nums);
+    }
+
+    public void reverse(int left,int right,int[] nums){
+    	while (left < right) {
+    		int temp = nums[right];
+    		nums[right] = nums[left];
+    		nums[left] = temp;
+    		left++;
+    		right--;
+		}
+	}
 ```
 
 时间复杂度：O（n）
