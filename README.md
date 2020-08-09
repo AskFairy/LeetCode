@@ -7,6 +7,8 @@ LeetCode习题集
 
 #### [盛最多水的容器](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ContainerWithMostWater.java)
 
+LeetCode地址：https://leetcode-cn.com/problems/container-with-most-water/
+
 代码：
 
 ```java
@@ -30,6 +32,8 @@ LeetCode习题集
 已做次数：2
 
 #### [移动零](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MoveZeroes.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/move-zeroes/ 
 
 代码：
 
@@ -55,6 +59,8 @@ LeetCode习题集
 已做次数：2
 
 #### [爬楼梯](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ClimbingStairs.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/climbing-stairs/
 
 代码：
 
@@ -82,6 +88,8 @@ LeetCode习题集
 已做次数：2
 
 #### [三数之和](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ThreeSum.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/3sum/
 
 代码：
 
@@ -125,9 +133,91 @@ LeetCode习题集
 
 ### Linked List 实战题目
 
+#### [反转链表（未完成）](https://leetcode-cn.com/problems/reverse-linked-list/)
+
+LeetCode地址：https://leetcode-cn.com/problems/reverse-linked-list/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [两两交换链表中的节点（未完成）](https://leetcode-cn.com/problems/swap-nodes-in-pairs/)
+
+LeetCode地址：https://leetcode-cn.com/problems/swap-nodes-in-pairs/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [环形链表（未完成）](https://leetcode-cn.com/problems/linked-list-cycle/)
+
+LeetCode地址：https://leetcode-cn.com/problems/linked-list-cycle/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [环形链表 II（未完成）](https://leetcode-cn.com/problems/linked-list-cycle-ii/)
+
+LeetCode地址：https://leetcode-cn.com/problems/linked-list-cycle-ii/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [K 个一组翻转链表（未完成）](https://leetcode-cn.com/problems/reverse-nodes-in-k-group/)
+
+LeetCode地址：https://leetcode-cn.com/problems/reverse-nodes-in-k-group/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
 ### 课后作业
 
 #### [删除数组中的重复项](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RemoveDuplicatesFromSortedArray.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-array/
 
 代码：
 
@@ -155,6 +245,8 @@ LeetCode习题集
 已做次数：2
 
 #### [旋转数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RotateArray .java)
+
+LeetCode地址：https://leetcode-cn.com/problems/rotate-array/ 
 
 代码：
 
@@ -185,6 +277,8 @@ LeetCode习题集
 
 #### [合并两个有序数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MergeSortedArray .java)
 
+LeetCode地址：https://leetcode-cn.com/problems/merge-two-sorted-lists/ 
+
 代码：
 
 ```java
@@ -211,3 +305,195 @@ LeetCode习题集
 空间复杂度：O（1）
 
 已做次数：2
+
+#### 题[合并两个有序链表（未完成）](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+LeetCode地址：https://leetcode-cn.com/problems/merge-two-sorted-lists/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [ 两数之和（未完成）](https://leetcode-cn.com/problems/two-sum/)
+
+LeetCode地址：https://leetcode-cn.com/problems/two-sum/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [加一（未完成）](https://leetcode-cn.com/problems/plus-one/)
+
+LeetCode地址：https://leetcode-cn.com/problems/plus-one/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+## 第四课
+
+### 预习题目
+
+#### [有效的括号（未完成）](https://leetcode-cn.com/problems/valid-parentheses/)
+
+LeetCode地址：https://leetcode-cn.com/problems/valid-parentheses/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [最小栈（未完成）](https://leetcode-cn.com/problems/min-stack/)
+
+LeetCode地址：https://leetcode-cn.com/problems/min-stack/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+### 实战题目
+
+#### [柱状图中最大的矩形（未完成）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+
+LeetCode地址：https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [滑动窗口最大值（未完成）](https://leetcode-cn.com/problems/sliding-window-maximum/)
+
+LeetCode地址：https://leetcode-cn.com/problems/sliding-window-maximum/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+### 课后作业
+
+#### [设计循环双端队列（未完成）](https://leetcode-cn.com/problems/design-circular-deque/)
+
+LeetCode地址：https://leetcode-cn.com/problems/design-circular-deque
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [接雨水（未完成）](https://leetcode-cn.com/problems/trapping-rain-water/)
+
+LeetCode地址：https://leetcode-cn.com/problems/trapping-rain-water/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### 用 add first 或 add last 这套新的 API 改写 Deque 的代码 
+
+#### 分析 Queue 和 Priority Queue 的源码 
+
+## 第五课
+
+### 实战题目/课后作业
+
+#### [有效的字母异位词（未完成）](https://leetcode-cn.com/problems/valid-anagram/)
+
+LeetCode地址：https://leetcode-cn.com/problems/valid-anagram/description/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
+
+#### [字母异位词分组（未完成）](https://leetcode-cn.com/problems/group-anagrams/)
+
+LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
