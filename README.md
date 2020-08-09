@@ -244,7 +244,7 @@ LeetCode地址：https://leetcode-cn.com/problems/remove-duplicates-from-sorted-
 
 已做次数：2
 
-#### [旋转数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RotateArray .java)
+#### [旋转数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/RotateArray.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/rotate-array/ 
 
@@ -275,7 +275,7 @@ LeetCode地址：https://leetcode-cn.com/problems/rotate-array/
 
 已做次数：2
 
-#### [合并两个有序数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MergeSortedArray .java)
+#### [合并两个有序数组](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MergeSortedArray.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/merge-two-sorted-lists/ 
 
@@ -306,7 +306,7 @@ LeetCode地址：https://leetcode-cn.com/problems/merge-two-sorted-lists/
 
 已做次数：2
 
-#### 题[合并两个有序链表（未完成）](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+#### [合并两个有序链表（未完成）](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
 
 LeetCode地址：https://leetcode-cn.com/problems/merge-two-sorted-lists/
 
@@ -358,21 +358,35 @@ LeetCode地址：https://leetcode-cn.com/problems/plus-one/
 
 ### 预习题目
 
-#### [有效的括号（未完成）](https://leetcode-cn.com/problems/valid-parentheses/)
+#### [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
 
 LeetCode地址：https://leetcode-cn.com/problems/valid-parentheses/
 
 代码：
 
 ```java
-
+	public boolean isValid(String s) {
+		Stack<Character> stack = new Stack<Character>();
+		for (char c : s.toCharArray()) {
+			if (c == '(') {
+				stack.push(')');
+			} else if (c == '{') {
+				stack.push('}');
+			} else if (c == '[') {
+				stack.push(']');
+			} else if (stack.isEmpty() || stack.pop() != c) {
+				return false;
+			}
+		}
+		return true;
+    }
 ```
 
-时间复杂度：
+时间复杂度：O(n)
 
-空间复杂度：
+空间复杂度：O(n)
 
-已做次数：
+已做次数：1
 
 #### [最小栈（未完成）](https://leetcode-cn.com/problems/min-stack/)
 

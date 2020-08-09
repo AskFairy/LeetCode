@@ -64,7 +64,7 @@ class Solution {
 				return false;
 			}
 		}
-		return true;
+		return stack.isEmpty();
     }
 }
 //leetcode submit region end(Prohibit modification and deletion)
