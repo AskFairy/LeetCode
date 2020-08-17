@@ -437,21 +437,111 @@ class MinStack {
 
 ### 实战题目
 
-#### [柱状图中最大的矩形（未完成）](https://leetcode-cn.com/problems/largest-rectangle-in-histogram/)
+#### [柱状图中最大的矩形](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/LargestRectangleInHistogram.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/largest-rectangle-in-histogram/
 
 代码：
 
 ```java
+// 第一种，单调栈
+	public int largestRectangleArea(int[] heights) {
+		// 存数组下标
+		Stack<Integer> stack = new Stack<>();
+		stack.push(-1);
+		int maxArea = 0;
+		for (int i = 0; i < heights.length; i++) {
+			while (stack.peek() != -1 && heights[i] < heights[stack.peek()]) {
+				// 小于栈顶元素，证明找到栈顶元素的左右边界。
+				// 右边界为当前元素，左边界为次栈顶元素
+				maxArea = Math.max(maxArea,heights[stack.pop()] * (i - stack.peek() - 1));
+			}
+			// 将当前元素加入
+			stack.push(i);
+		}
+		// 除了不为-1
+		while (stack.peek() != -1) {
+			maxArea = Math.max(maxArea,heights[stack.pop()] * (heights.length - stack.peek() - 1));
+		}
+		return maxArea;
+    }
+// 第二种，单调栈+哨兵（低于第三种）
+ 	public int largestRectangleArea(int[] heights) {
+        int len = heights.length;
+		if (len == 0) {
+			return 0;
+		}
+		if (len == 1) {
+			return heights[0];
+		}
 
+		// copy 一个新数组，在前后打上哨兵
+		int[] newHeights = new int[len + 2];
+		newHeights[0] = 0;
+		System.arraycopy(heights,0,newHeights,1,len);
+		newHeights[len + 1] = 0;
+		heights = newHeights;
+		len += 2;
+
+		Deque<Integer> stack = new ArrayDeque<>(len);
+		int maxArea = 0;
+        stack.addLast(0);
+		for (int i = 1; i < len; i++) {
+			while (heights[i] < heights[stack.peekLast()]) {
+				// 小于栈顶元素，证明找到栈顶元素的左右边界。
+				// 右边界为当前元素，左边界为次栈顶元素
+				int height = heights[stack.pollLast()];
+				int width = i - stack.peekLast() - 1;
+				maxArea = Math.max(maxArea,height * width);
+			}
+			stack.addLast(i);
+		}
+		return maxArea;
+    }
+// 第三种，（国际站，性能最好的）(未手打)
+	public int largestRectangleArea(int[] height) {
+        if (height == null || height.length == 0) {
+            return 0;
+        }
+        // idx of the first bar the left that is lower than current
+        int[] lessFromLeft = new int[height.length]; 
+        // idx of the first bar the right that is lower than current
+        int[] lessFromRight = new int[height.length]; 
+        lessFromRight[height.length - 1] = height.length;
+        lessFromLeft[0] = -1;
+
+        for (int i = 1; i < height.length; i++) {
+            int p = i - 1;
+
+            while (p >= 0 && height[p] >= height[i]) {
+                p = lessFromLeft[p];
+            }
+            lessFromLeft[i] = p;
+        }
+
+        for (int i = height.length - 2; i >= 0; i--) {
+            int p = i + 1;
+
+            while (p < height.length && height[p] >= height[i]) {
+                p = lessFromRight[p];
+            }
+            lessFromRight[i] = p;
+        }
+
+        int maxArea = 0;
+        for (int i = 0; i < height.length; i++) {
+            maxArea = Math.max(maxArea, height[i] * (lessFromRight[i] - lessFromLeft[i] - 1));
+        }
+
+        return maxArea;
+    }
 ```
 
-时间复杂度：
+时间复杂度：O(n)
 
-空间复杂度：
+空间复杂度：O(n)
 
-已做次数：
+已做次数：1
 
 #### [滑动窗口最大值（未完成）](https://leetcode-cn.com/problems/sliding-window-maximum/)
 
