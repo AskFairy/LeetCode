@@ -358,7 +358,7 @@ LeetCode地址：https://leetcode-cn.com/problems/plus-one/
 
 ### 预习题目
 
-#### [有效的括号](https://leetcode-cn.com/problems/valid-parentheses/)
+#### [有效的括号](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidParentheses.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/valid-parentheses/
 
@@ -378,7 +378,7 @@ LeetCode地址：https://leetcode-cn.com/problems/valid-parentheses/
 				return false;
 			}
 		}
-		return true;
+		return stack.isEmpty();
     }
 ```
 
@@ -388,21 +388,52 @@ LeetCode地址：https://leetcode-cn.com/problems/valid-parentheses/
 
 已做次数：1
 
-#### [最小栈（未完成）](https://leetcode-cn.com/problems/min-stack/)
+#### [最小栈](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/MinStack.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/min-stack/
 
 代码：
 
 ```java
+class MinStack {
 
+    private Stack<Integer> stack;
+    private Stack<Integer> minStack;
+    /** initialize your data structure here. */
+    public MinStack() {
+        stack = new Stack<>();
+        minStack = new Stack<>();
+    }
+    
+    public void push(int x) {
+        stack.push(x);
+        if (minStack.isEmpty() || x <= minStack.peek()) {
+            minStack.push(x);
+        }
+    }
+    
+    public void pop() {
+        if (stack.pop().equals(minStack.peek())) {
+            minStack.pop();
+        }
+
+    }
+    
+    public int top() {
+        return stack.peek();
+    }
+    
+    public int getMin() {
+        return minStack.peek();
+    }
+}
 ```
 
-时间复杂度：
+时间复杂度：O(1)
 
-空间复杂度：
+空间复杂度：O(n)
 
-已做次数：
+已做次数：1
 
 ### 实战题目
 
@@ -476,7 +507,7 @@ LeetCode地址：https://leetcode-cn.com/problems/trapping-rain-water/
 
 #### 分析 Queue 和 Priority Queue 的源码 
 
-## 第五课
+## 第五课  Hash表,映射,集合
 
 ### 实战题目/课后作业
 
