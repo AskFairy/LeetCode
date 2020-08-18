@@ -632,3 +632,56 @@ LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
 空间复杂度：
 
 已做次数：
+
+## 第12课 动态规划
+
+### 本周作业
+
+#### [91. 解码方法](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/DecodeWays.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/decode-ways/
+
+代码：
+
+```java
+class Solution {
+    public int numDecodings(String s) {
+		int len = s.length();
+		int[] dp = new int[len+1];
+		// 哨兵,比输入数组多一位
+		dp[len] = 1;
+		// 个位不为0，则课编码为1
+		if (s.charAt(len-1) != '0') {
+			dp[len-1] = 1;
+		}
+
+		// 由十位开始
+		for (int i = len - 2; i >= 0; i--) {
+			if(s.charAt(i) == '0'){
+				dp[i] = 0;
+				continue;
+			}
+
+			int dpi1 = dp[i+1];
+			int dpi2 = 0;
+			// 如果小于26，正常公式
+			int ten = (s.charAt(i) - '0') * 10;
+			int one = s.charAt(i+1) - '0';
+			// 如果 s.charAt(i) == 0 肯定能进这个判断
+			if(ten + one <= 26){
+				dpi2 = dp[i+2];
+			}
+			// 大于26，就和 i+1 的编码数一样了
+			dp[i] = dpi1 + dpi2;
+		}
+		return dp[0];
+    }
+}
+```
+
+时间复杂度：O(n)
+
+空间复杂度：O(n)
+
+已做次数：1
+
