@@ -601,21 +601,43 @@ LeetCode地址：https://leetcode-cn.com/problems/trapping-rain-water/
 
 ### 实战题目/课后作业
 
-#### [有效的字母异位词（未完成）](https://leetcode-cn.com/problems/valid-anagram/)
+#### [有效的字母异位词](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidAnagram.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/valid-anagram/description/
 
 代码：
 
 ```java
+	public boolean isAnagram(String s, String t) {
 
+		if(s.length() != t.length()){
+			return false;
+		}
+		// 计数表
+		int[] count = new int[26];
+
+		for (int i = 0; i < s.length(); i++) {
+			count[s.charAt(i) - 'a'] ++;
+		}
+
+		for (int i = 0; i < t.length(); i++) {
+			int index = t.charAt(i) - 'a';
+			count[index] --;
+			if (count[index] < 0) {
+				return false;
+			}
+		}
+
+		return true;
+
+    }
 ```
 
-时间复杂度：
+时间复杂度：O(n)
 
-空间复杂度：
+空间复杂度：O(1)
 
-已做次数：
+已做次数：2
 
 #### [字母异位词分组（未完成）](https://leetcode-cn.com/problems/group-anagrams/)
 

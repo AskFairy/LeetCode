@@ -64,6 +64,42 @@ class Solution {
 		}
 		return dp[0];
     }
+	// TODO 将空间复杂度，变为O(1)
+	public int numDecodings1(String s) {
+		int len = s.length();
+		if (s.charAt(0) == '0') {
+			return 0;
+		}
+		int n1 = 1;
+		// 哨兵
+		int n2 = 1;
+
+		if (s.charAt(len-1) == '0'){
+			n1 = 0;
+		}
+
+
+		// 由十位开始
+		for (int i = len - 2; i >= 0; i--) {
+			if(s.charAt(i) == '0'){
+				n2 = n1;
+				n1 = 0;
+				continue;
+			}
+
+			// 如果小于26，正常公式
+			int temp = n1;
+			n1 = n1 + n2;
+			n2 = temp;
+
+			int ten = (s.charAt(i) - '0') * 10;
+			int one = s.charAt(i+1) - '0';
+			if(ten + one > 26){
+				n1 = 0;
+			}
+		}
+		return n1 + n2;
+	}
 }
 //leetcode submit region end(Prohibit modification and deletion)
 
