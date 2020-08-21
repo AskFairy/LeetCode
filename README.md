@@ -655,6 +655,60 @@ LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
 
 已做次数：
 
+## 第六课 树、二叉树、二叉搜索树
+
+[98. 验证二叉搜索树](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidateBinarySearchTree.java)
+
+LeetCode地址：https://leetcode-cn.com/problems/validate-binary-search-tree/
+
+代码：
+
+```java
+// 递归
+    public boolean helper(TreeNode node,Integer lower,Integer upper){
+    	//跳出
+    	if (node == null) return true;
+
+    	// 判断
+		int val = node.val;
+		if (lower != null && val <= lower) return false;
+		if (upper != null && val >= upper) return false;
+		// 递归
+		if (!helper(node.left,lower,val)) return false;
+		if (!helper(node.right,val,upper)) return  false;
+
+		return true;
+	}
+
+	// 中序遍历+栈
+	public boolean isValidBST2(TreeNode root) {
+		Stack<TreeNode> stack = new Stack<>();
+		Integer pre = null;
+		while (!stack.isEmpty() || root != null) {
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+
+			root = stack.pop();
+			if (pre != null && root.val <= pre) return false;
+			pre = root.val;
+			root = root.right;
+		}
+		return true;
+	}
+```
+
+时间复杂度：O(n)
+
+空间复杂度：O(n)
+
+已做次数：1
+
+二叉树的最近公共祖先
+
+二叉搜索树的最近公共祖先
+
 ## 第12课 动态规划
 
 ### 本周作业
