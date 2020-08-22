@@ -657,7 +657,7 @@ LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
 
 ## 第六课 树、二叉树、二叉搜索树
 
-[98. 验证二叉搜索树](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidateBinarySearchTree.java)
+#### [98. 验证二叉搜索树](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidateBinarySearchTree.java)
 
 LeetCode地址：https://leetcode-cn.com/problems/validate-binary-search-tree/
 
@@ -705,9 +705,48 @@ LeetCode地址：https://leetcode-cn.com/problems/validate-binary-search-tree/
 
 已做次数：1
 
-二叉树的最近公共祖先
+#### [剑指 Offer 68 - II. 二叉树的最近公共祖先](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/LowestCommonAncestorOfABinaryTree.java)
 
-二叉搜索树的最近公共祖先
+LeetCode地址：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/
+
+代码：
+
+```java
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        if ( root == null || root == p || root == q) {
+            return root;
+        }
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,q);
+        
+        if (left == null && right == null) return null;
+        if (left == null) return right;
+        if (right == null) return left;
+        return root;
+    }
+```
+
+时间复杂度：O(n)
+
+空间复杂度：O(n)
+
+已做次数：1
+
+#### 二叉搜索树的最近公共祖先(未完成)
+
+LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
+
+代码：
+
+```java
+
+```
+
+时间复杂度：
+
+空间复杂度：
+
+已做次数：
 
 ## 第12课 动态规划
 
