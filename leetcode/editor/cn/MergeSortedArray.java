@@ -23,7 +23,9 @@ package editor.cn;
 // Related Topics 数组 双指针 
 // 👍 573 👎 0
 
-class MergeSortedArray{
+import java.io.Serializable;
+
+class MergeSortedArray implements Serializable {
 	public static void main(String[] args) {
 		Solution solution = new MergeSortedArray().new Solution();
 		
