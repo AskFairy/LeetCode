@@ -98,13 +98,17 @@ LeetCode地址：https://leetcode-cn.com/problems/3sum/
 		Arrays.sort(nums);
 		List<List<Integer>> res = new ArrayList<>();
 		for(int k = 0; k < nums.length - 2; k++) {
-			if (nums[k] > 0) {
+			// 图标是排序，大于0就不用比较了
+            if (nums[k] > 0) {
 				break;
 			}
+             // 和前一个数一样就不用比较了
 			if (k > 0 && nums[k] == nums[k - 1]){
 				continue;
 			}
+             // 左指针
 			int i = k + 1;
+             // 右指针
 			int j = nums.length - 1;
 			while (i < j) {
 				int sum = nums[k] + nums[i] + nums[j];
@@ -643,96 +647,11 @@ LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
 
 ## 第六课 树、二叉树、二叉搜索树
 
-#### [98. 验证二叉搜索树](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/ValidateBinarySearchTree.java)
 
-LeetCode地址：https://leetcode-cn.com/problems/validate-binary-search-tree/
 
-代码：
 
-```java
-// 递归
-    public boolean helper(TreeNode node,Integer lower,Integer upper){
-    	//跳出
-    	if (node == null) return true;
 
-    	// 判断
-		int val = node.val;
-		if (lower != null && val <= lower) return false;
-		if (upper != null && val >= upper) return false;
-		// 递归
-		if (!helper(node.left,lower,val)) return false;
-		if (!helper(node.right,val,upper)) return  false;
 
-		return true;
-	}
-
-	// 中序遍历+栈
-	public boolean isValidBST2(TreeNode root) {
-		Stack<TreeNode> stack = new Stack<>();
-		Integer pre = null;
-		while (!stack.isEmpty() || root != null) {
-			while (root != null) {
-				stack.push(root);
-				root = root.left;
-			}
-
-			root = stack.pop();
-			if (pre != null && root.val <= pre) return false;
-			pre = root.val;
-			root = root.right;
-		}
-		return true;
-	}
-```
-
-时间复杂度：O(n)
-
-空间复杂度：O(n)
-
-已做次数：1
-
-#### [剑指 Offer 68 - II. 二叉树的最近公共祖先](https://github.com/AskFairy/LeetCode/blob/master/leetcode/editor/cn/LowestCommonAncestorOfABinaryTree.java)
-
-LeetCode地址：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof/
-
-代码：
-
-```java
-public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if ( root == null || root == p || root == q) {
-            return root;
-        }
-        TreeNode left = lowestCommonAncestor(root.left,p,q);
-        TreeNode right = lowestCommonAncestor(root.right,p,q);
-        
-        if (left == null && right == null) return null;
-        if (left == null) return right;
-        if (right == null) return left;
-        return root;
-    }
-```
-
-时间复杂度：O(n)
-
-空间复杂度：O(n)
-
-已做次数：1
-
-#### 二叉搜索树的最近公共祖先(未完成)
-
-LeetCode地址：https://leetcode-cn.com/problems/group-anagrams/
-
-代码：
-
-```java
-
-```
-
-时间复杂度：
-
-空间复杂度：
-
-已做次数：
 
 ## 第12课 动态规划
 
@@ -1051,7 +970,7 @@ class Solution {
 
 用数组继续优化
 
-既然都是找**字符到索引的映射**，并替换下标，为什么不用256位（一个256个字符）的数组来替代hashmap，以进一步优化。
+既然都是找**字符到索引的映射**，为什么不用256位（一个256个字符）的数组来替代hashmap，以进一步优化。
 
 #### 代码
 
@@ -1083,3 +1002,639 @@ class Solution {
 [无重复字符的最长子串（3）](https://www.geekxh.com/1.5.滑动窗口系列/502.html)
 
 #### 已做次数：1
+
+## 链表系列
+
+### [剑指 Offer 24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/)
+
+#### 问题
+
+```java
+定义一个函数，输入一个链表的头节点，反转该链表并输出反转后链表的头节点。
+
+ 
+
+示例:
+
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+ 
+
+限制：
+
+0 <= 节点个数 <= 5000
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+
+
+#### 题目解析
+
+1. #### 利用外部空间
+
+   填入数组或者容器，比如 ArrayList 或者 栈 这样的。
+
+   time：o(2n)---->o(n)
+
+   space:O(n)
+
+2. #### 双指针迭代 (推荐)
+
+   申请两个指针，pre、cur。
+
+   第一个指针叫 pre，最初是指向 null 的。
+   第二个指针 cur 指向 head，然后不断遍历 cur。
+   每次迭代到 cur，都将 cur 的 next 指向 pre，然后 pre 和 cur 前进一位。
+
+   都迭代完了(cur 变成 null 了)，pre 就是最后一个节点了。
+
+   原理：循环，一个个节点拆，改变指针指向
+
+3. ### 递归解法
+
+   双指针是从头部开始调转指针，而递归是从尾部开展调转
+
+   终止条件是当前节点或者下一个节点==null
+
+   在函数内部，改变节点的指向，也就是 head 的下一个节点指向 head 递归函数那句
+
+#### 代码
+
+```java
+	//双指针 time: O(n),space:O(1)
+    public ListNode reverseList(ListNode head) {
+        //申请节点，pre和 cur，pre指向null
+        ListNode pre = null;
+        ListNode cur = head;
+        ListNode tmp = null;
+        while (cur != null) {
+            //记录当前节点的下一个节点
+            tmp = cur.next;
+            //然后将当前节点指向pre
+            cur.next = pre;
+            //pre和cur节点都前进一位
+            pre = cur;
+            cur = tmp;
+        }
+        return pre;
+    }
+	// 递归
+	public ListNode reverseList(ListNode head) {
+        //递归终止条件是当前为空，或者下一个节点为空
+       if (head == null || head.next == null) {
+           return head;
+       }
+       //这里的cur就是最后一个节点,先到最底层，再反过来调转指针
+       ListNode cur = reverseList(head.next);
+       //如果链表是 1->2->3->4->5，那么此时的cur就是5
+	   //而head是4，head的下一个是5，下下一个是空
+	   //所以head.next.next 就是5->4
+       head.next.next = head;
+       //防止链表循环，需要将head.next设置为空
+       head.next = null;
+       //每层递归函数都返回cur，也就是最后一个节点
+       return cur;
+    }
+```
+
+
+
+#### 涉及题解
+
+[动画演示+多种解法 面试题24. 反转链表](https://leetcode-cn.com/problems/fan-zhuan-lian-biao-lcof/solution/dong-hua-yan-shi-duo-chong-jie-fa-206-fan-zhuan-li/)
+
+#### 已做次数：2
+
+### [876. 链表的中间结点](https://leetcode-cn.com/problems/middle-of-the-linked-list/)
+
+#### 问题
+
+```java
+给定一个带有头结点 head 的非空单链表，返回链表的中间结点。
+
+如果有两个中间结点，则返回第二个中间结点。
+
+ 
+
+示例 1：
+
+输入：[1,2,3,4,5]
+输出：此列表中的结点 3 (序列化形式：[3,4,5])
+返回的结点值为 3 。 (测评系统对该结点序列化表述是 [3,4,5])。
+注意，我们返回了一个 ListNode 类型的对象 ans，这样：
+ans.val = 3, ans.next.val = 4, ans.next.next.val = 5, 以及 ans.next.next.next = NULL.
+示例 2：
+
+输入：[1,2,3,4,5,6]
+输出：此列表中的结点 4 (序列化形式：[4,5,6])
+由于该列表有两个中间结点，值分别为 3 和 4，我们返回第二个结点。
+ 
+
+提示：
+
+给定链表的结点数介于 1 和 100 之间。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/middle-of-the-linked-list
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+
+
+#### 题目解析
+
+1. 双循环，单指针
+
+   先遍历一次，计算链表的长度，进而计算链表中间结点的下标（注意偶数结点的时候，得到的是中间的第二个结点），然后再遍历一次，来到所要求结点的位置。
+
+   问题：
+
+   - 时间复杂对太高 O(1.5n),需要遍历第二遍找元素
+
+2. 数组存映射关系
+
+   第一次遍历的时候，建立下标到值的映射Map，有因为题目说**给定链表的结点数介于 `1` 和 `100` 之间**，为了速度更快，建立个长度为100的数组就行。
+
+   问题：
+
+   - 空间复杂度太高，O(n)
+
+3. 快慢指针
+
+   快慢指针的前进方向相同，且它们步伐的「差」是恒定的。使用两个指针变量，刚开始都位于链表的第 1 个结点，一个永远一次只走 1 步，一个永远一次只走 2 步，一个在前，一个在后，同时走。这样当快指针走完的时候，慢指针就来到了链表的中间位置。
+
+
+#### 代码
+
+```java
+class Solution {
+    public ListNode middleNode(ListNode head) {
+        ListNode slow = head, fast = head;
+        // 偶数：fast ！= null，奇数：fast.next != null
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+}
+```
+
+
+
+#### 涉及题解（重点，快慢的思想）
+
+[快慢指针（注意链表长度为偶数时，返回第 2 个结点的细节）](https://leetcode-cn.com/problems/middle-of-the-linked-list/solution/kuai-man-zhi-zhen-zhu-yao-zai-yu-diao-shi-by-liwei/)
+
+#### 已做次数：1
+
+### [21. 合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/)
+
+#### 问题
+
+```java
+将两个升序链表合并为一个新的 升序 链表并返回。新链表是通过拼接给定的两个链表的所有节点组成的。 
+
+ 
+
+示例：
+
+输入：1->2->4, 1->3->4
+输出：1->1->2->3->4->4
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/merge-two-sorted-lists
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+
+
+#### 题目解析
+
+递归
+
+- 如果 `l1` 或者 `l2` 一开始就是空链表 ，那么没有任何操作需要合并，所以我们只需要返回非空链表
+- 否则，我们要判断 `l1` 和 `l2` 哪一个链表的头节点的值更小，然后递归地决定下一个添加到结果里的节点
+- 如果两个链表有一个为空，递归结束。
+
+迭代
+
+- 首先我们**维护一个 prehead 的哨兵节点**
+- 我们其实**只需要调整它的 next 指针**。让它总是**指向l1或者l2中较小的一个，直到l1或者l2任一指向null**
+- 样到了最后，如果l1还是l2中任意一方还有余下元素没有用到，那**余下的这些元素一定大于prehead已经合并完的链表（因为是有序链表）**
+- 我们只需要将这些元素全部追加到prehead合并完的链表后，最终就得到了我们需要的链表
+
+#### 代码
+
+```java
+// 递归
+// time:O(n)
+// space:O(n) 递归栈空间的大小取决于递归调用的深度
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        // 终止条件
+        if (null == l1) {
+            return l2;
+        }else if (null == l2) {
+            return l1;
+        }
+
+        //判断哪个值最小
+        if (l1.val < l2.val) {
+            // 递归
+            l1.next = mergeTwoLists(l1.next,l2);
+            return l1;
+        } else {
+            // 递归
+            l2.next = mergeTwoLists(l1,l2.next);
+            return l2;
+        }
+    }
+}
+// 迭代
+// time:O(n)
+// space:O(1) 只要一个哨兵节点
+class Solution {
+    public ListNode mergeTwoLists(ListNode l1, ListNode l2) {
+        ListNode preHead = new ListNode(-1);
+        ListNode sentry = preHead;
+        while (l1 != null && l2 != null) {
+            //调整它的 next 指针。让它总是指向l1或者l2中较小的一个，直到l1或者l2任一指向null
+            //然后较小的向前移一位
+            if (l1.val <= l2.val) {
+                sentry.next = l1;
+                l1 = l1.next;
+            } else {
+                sentry.next = l2;
+                l2 = l2 .next;
+            }
+            // 哨兵前移
+            sentry = sentry.next;
+        } 
+
+        // 合并后 l1 和 l2 最多只有一个还未被合并完，我们直接将链表末尾指向未合并完的链表即可
+        // 顺便做了传入参数的验证
+        sentry.next = l1 == null ? l2 : l1;
+
+        return preHead.next;
+    }
+}
+```
+
+
+
+#### 涉及题解
+
+[合并两个有序链表](https://leetcode-cn.com/problems/merge-two-sorted-lists/solution/he-bing-liang-ge-you-xu-lian-biao-by-leetcode-solu/)
+
+#### 已做次数：1
+
+## X数之和
+
+### 三数之和
+
+#### 问题
+
+```java
+给你一个包含 n 个整数的数组 nums，判断 nums 中是否存在三个元素 a，b，c ，使得 a + b + c = 0 ？请你找出所有满足条件且不重复的三元组。
+
+注意：答案中不可以包含重复的三元组。
+
+ 
+
+示例：
+
+给定数组 nums = [-1, 0, 1, 2, -1, -4]，
+
+满足要求的三元组集合为：
+[
+  [-1, 0, 1],
+  [-1, -1, 2]
+]
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/3sum
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+#### 题目解析
+
+暴力法
+
+		三层循环，时间复杂度O^3
+
+双指针
+
+		将 a + b + c = 0变为 -c = a + b，先固定一个值，剩下的就是求两数之和
+
+#### 代码
+
+```java
+	// time: O^2,space:O(1)
+ 	public List<List<Integer>> threeSum(int[] nums) {
+		Arrays.sort(nums);
+		List<List<Integer>> res = new ArrayList<>();
+		for(int k = 0; k < nums.length - 2; k++) {
+			// 图标是排序，大于0就不用比较了
+            if (nums[k] > 0) {
+				break;
+			}
+             // 和前一个数一样就不用比较了
+			if (k > 0 && nums[k] == nums[k - 1]){
+				continue;
+			}
+             // 左指针
+			int i = k + 1;
+             // 右指针
+			int j = nums.length - 1;
+			while (i < j) {
+				int sum = nums[k] + nums[i] + nums[j];
+				if (sum < 0) {
+                     // 去除重复数字
+					while(i < j && nums[i] == nums[++i]);
+				}
+				if (sum > 0) {
+                     // 去除重复数字
+					while(i < j && nums[j] == nums[--j]);
+				}
+				if (sum == 0) {
+					res.add(new ArrayList<Integer>(Arrays.asList(nums[k],nums[i],nums[j])));
+					// 去除重复数字
+                    while(i < j && nums[i] == nums[++i]);
+					while(i < j && nums[j] == nums[--j]);
+				}
+			}
+		}
+		return res;
+    }
+```
+
+#### 涉及题解
+
+[三数之和](https://www.geekxh.com/1.0.%E6%95%B0%E7%BB%84%E7%B3%BB%E5%88%97/008.html#_02%E3%80%81%E9%A2%98%E7%9B%AE%E5%88%86%E6%9E%90)
+
+#### 已做次数：2
+
+## 动态规划
+
+### [70. 爬楼梯](https://leetcode-cn.com/problems/climbing-stairs/)
+
+#### 问题
+
+```java
+假设你正在爬楼梯。需要 n 阶你才能到达楼顶。
+
+每次你可以爬 1 或 2 个台阶。你有多少种不同的方法可以爬到楼顶呢？
+
+注意：给定 n 是一个正整数。
+
+示例 1：
+
+输入： 2
+输出： 2
+解释： 有两种方法可以爬到楼顶。
+1.  1 阶 + 1 阶
+2.  2 阶
+示例 2：
+
+输入： 3
+输出： 3
+解释： 有三种方法可以爬到楼顶。
+1.  1 阶 + 1 阶 + 1 阶
+2.  1 阶 + 2 阶
+3.  2 阶 + 1 阶
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/climbing-stairs
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+
+
+#### 题目解析
+
+很简单,从高往低推.假设你站着n台阶上,能到达n台阶只有两种方式,
+
+- 由n-1向上走一步
+- 由n-2向上走两步
+
+所以f(n) = f(n-1) + f(n-2)
+
+#### 代码
+
+```java
+//time:O(n),space:(1)
+public int climbStairs(int n) {
+    	if (n <= 2) {
+    		return n;
+		}
+    	int f1 = 1;
+    	int f2 = 2;
+    	int f3 = 0;
+        // 从第三位开始
+    	for (int i = 3;i <= n; i++) {
+    		f3 = f1 + f2;
+    		f1 = f2;
+    		f2 = f3;
+		}
+    	return f3;
+    }
+```
+
+
+
+#### 涉及题解
+
+[爬楼梯](https://www.geekxh.com/1.2.%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%B3%BB%E5%88%97/201.html#_03-%E3%80%81%E5%9B%BE%E8%A7%A3%E5%88%86%E6%9E%90)
+
+#### 已做次数:2
+
+## 树
+
+### [98. 验证二叉搜索树](https://leetcode-cn.com/problems/validate-binary-search-tree/)
+
+代码：
+
+```java
+// 递归
+    public boolean helper(TreeNode node,Integer lower,Integer upper){
+    	//跳出
+    	if (node == null) return true;
+
+    	// 判断
+		int val = node.val;
+		if (lower != null && val <= lower) return false;
+		if (upper != null && val >= upper) return false;
+		// 递归
+		if (!helper(node.left,lower,val)) return false;
+		if (!helper(node.right,val,upper)) return  false;
+
+		return true;
+	}
+
+	// 中序遍历+栈
+	public boolean isValidBST2(TreeNode root) {
+		Stack<TreeNode> stack = new Stack<>();
+		Integer pre = null;
+		while (!stack.isEmpty() || root != null) {
+			while (root != null) {
+				stack.push(root);
+				root = root.left;
+			}
+
+			root = stack.pop();
+			if (pre != null && root.val <= pre) return false;
+			pre = root.val;
+			root = root.right;
+		}
+		return true;
+	}
+```
+
+时间复杂度：O(n)
+
+空间复杂度：O(n)
+
+已做次数：1
+
+### [236. 二叉树的最近公共祖先](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/)
+
+#### 问题
+
+```java
+给定一个二叉树, 找到该树中两个指定节点的最近公共祖先。
+
+百度百科中最近公共祖先的定义为：“对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（一个节点也可以是它自己的祖先）。”
+
+例如，给定如下二叉树:  root = [3,5,1,6,2,0,8,null,null,7,4]
+
+
+
+ 
+
+示例 1:
+
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 1
+输出: 3
+解释: 节点 5 和节点 1 的最近公共祖先是节点 3。
+示例 2:
+
+输入: root = [3,5,1,6,2,0,8,null,null,7,4], p = 5, q = 4
+输出: 5
+解释: 节点 5 和节点 4 的最近公共祖先是节点 5。因为根据定义最近公共祖先节点可以为节点本身。
+ 
+
+说明:
+
+所有节点的值都是唯一的。
+p、q 为不同节点且均存在于给定的二叉树中。
+
+来源：力扣（LeetCode）
+链接：https://leetcode-cn.com/problems/er-cha-shu-de-zui-jin-gong-gong-zu-xian-lcof
+著作权归领扣网络所有。商业转载请联系官方授权，非商业转载请注明出处。
+```
+
+
+
+#### 题目解析
+
+**祖先的定义：**若节点 p 在节点 root的左（右）子树中，或 p = root，则称 root是 p的祖先。
+
+**最近公共祖先**：对于有根树 T 的两个结点 p、q，最近公共祖先表示为一个结点 x，满足 x 是 p、q 的祖先且 x 的深度尽可能大（离他俩最近的）（一个节点也可以是它自己的祖先）。
+
+根据以上定义，若 root 是 p, q的 **最近公共祖先** ，则只可能为以下情况之一：
+
+- p和 q 在 root的子树中，且分列 root的 异侧（即分别在左、右子树中）；
+  p = root ，且 q在 root 的左或右子树中；
+  q = root ，且 p在 root的左或右子树中；
+
+#### 代码
+
+```java
+// time:O(n) 最差遍历所有节点。
+// space:O(n) 最差是个链表，深度N
+public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
+        // 终止条件
+        if (root == null || root == p || root == q){
+            return root;
+        }
+
+        // 递归：不要多想，去人肉递归，就想当前层
+        TreeNode left = lowestCommonAncestor(root.left,p,q);
+        TreeNode right = lowestCommonAncestor(root.right,p,);
+
+        // 都为空，那就是没有
+        if ( left == null && right == null ) return null;
+        // right 有值，都在右侧，不管是p是q，第一个返回的就是最近公共祖先
+        if (left == null) return right;
+        // left 有值，都在左侧，不管是p是q，第一个返回的就是最近公共祖先
+        if (right == null) return left;
+
+        // 在异侧，当然就是当前节点了
+        return root;
+    }
+```
+
+
+
+#### 涉及题解
+
+[236. 二叉树的最近公共祖先（后序遍历 DFS ，清晰图解）](https://leetcode-cn.com/problems/lowest-common-ancestor-of-a-binary-tree/solution/236-er-cha-shu-de-zui-jin-gong-gong-zu-xian-hou-xu/)
+
+#### 已做次数：2
+
+## 排序
+
+### 选择排序
+
+#### 问题
+
+选择排序是一种简单直观的排序算法，无论什么数据进去都是 O(n²) 的时间复杂度。所以用到它的时候，数据规模越小越好。唯一的好处可能就是不占用额外的内存空间了吧。
+
+#### 题目解析
+
+1. 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置
+2. 再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。
+3. 重复第二步，直到所有元素均排序完毕。
+
+#### 代码
+
+#### 涉及题解
+
+```java
+public int[] selectSort(int[] nums) {
+    // 经过 n - 1 轮比较
+    for (int i = 0; i < nums.length - 1; i++) {
+    	// 记录每轮最小值的坐标
+        int min = i;
+        // 每轮比较 n - 1次
+        for (int j = i; j < nums.length - 1; j++) {
+            if (nums[min] > nums[j]) {
+                min = j;
+            }
+        }
+        
+        // 将最小值和当前值替换
+        if (i != min) {
+            int tmp = nums[i];
+            nums[i] = nums[min];
+            nums[min] = tmp;
+        }
+    }
+    return nums;
+}
+```
+
+
+
+#### 已做次数：1
+
+1. 快排 (0.4)
+2. 归并排序 (0.3)
+3. 10 万个数中找 TopK(0.3)
+4. 最长回文子串 (0.2)
+5. 反序字符串 (0.2)
+6. 链表反转 (0.2)
