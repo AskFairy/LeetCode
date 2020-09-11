@@ -1,4 +1,4 @@
-# LeetCode
+# LeetCode(已转移)
 LeetCode习题集
 
 ## 第三课
